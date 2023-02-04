@@ -1,4 +1,8 @@
-import { RichText, useBlockProps } from '@wordpress/block-editor';
+import {
+	MediaPlaceholder,
+	RichText,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -10,11 +14,12 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { bio: newBio } );
 	};
 	return (
-		<div
-			{ ...useBlockProps( {
-				className: `block-colurse-team-member`,
-			} ) }
-		>
+		<div { ...useBlockProps() }>
+			<MediaPlaceholder
+				icon="admin-users"
+				accept="image/*"
+				allowedTypes={ [ 'image' ] }
+			/>
 			<RichText
 				placeholder={ __( 'Member Name', 'team-member' ) }
 				tagName="h4"
