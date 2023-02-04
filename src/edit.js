@@ -5,7 +5,6 @@ import {
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { columns } = attributes;
@@ -13,6 +12,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const onChangeColumns = ( newColumns ) => {
 		setAttributes( { columns: newColumns } );
 	};
+
 	return (
 		<div
 			{ ...useBlockProps( {
