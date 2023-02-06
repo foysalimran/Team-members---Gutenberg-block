@@ -2402,7 +2402,7 @@
   resolved "https://registry.yarnpkg.com/@wordpress/base-styles/-/base-styles-4.17.0.tgz#bef4b781b287a736b328d167fa96e24cf61d873a"
   integrity sha512-QDdW5PzPNzSOAudlkeMIuwlGxmQSmnJAulD11f4d/OPwfU+KMk3hYr6QS3nzFghlT6IDwcwwlNE6BgoN772G4A==
 
-"@wordpress/blob@^3.22.0", "@wordpress/blob@^3.7.0":
+"@wordpress/blob@^3.22.0", "@wordpress/blob@^3.26.0", "@wordpress/blob@^3.7.0":
   version "3.26.0"
   resolved "https://registry.yarnpkg.com/@wordpress/blob/-/blob-3.26.0.tgz#c291349bc1e02c94a440fee2e8c4eba6fa884f5d"
   integrity sha512-zxsxvFXmPUtZeJutmeqtK3P5wZ2h+owmgS1dSDQzAoJeYUypZhe9zYhNPiQ9xB1JffxPWhegJ04OS3eqIYlZxA==
