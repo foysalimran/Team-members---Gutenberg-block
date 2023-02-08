@@ -5,15 +5,18 @@ import {
 	MediaPlaceholder,
 	MediaReplaceFlow,
 	RichText,
+	store as blockEditorStore,
 	useBlockProps,
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
+	SelectControl,
 	Spinner,
 	TextareaControl,
 	ToolbarButton,
 	withNotices,
 } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -21,6 +24,36 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 	const { name, bio, url, alt, id } = attributes;
 
 	const [ blobURL, setBlobURL ] = useState();
+
+	const imageObject = useSelect(
+		( select ) => {
+			const { getMedia } = select( 'core' );
+			return id ? getMedia( id ) : null;
+		},
+		[ id ]
+	);
+
+	const imageSizes = useSelect( ( select ) => {
+		return select( blockEditorStore ).getSettings().imageSizes;
+	}, [] );
+
+	const getImageSizeOptions = () => {
+		if ( ! imageObject ) return [];
+		const options = [];
+		const sizes = imageObject.media_details.sizes;
+
+		for ( const key in sizes ) {
+			const size = sizes[ key ];
+			const imageSize = imageSizes.find( ( s ) => s.slug === key );
+			if ( imageSize ) {
+				options.push( {
+					label: imageSize.name,
+					value: size.source_url,
+				} );
+			}
+		}
+		return options;
+	};
 
 	const onChangeName = ( newName ) => {
 		setAttributes( { name: newName } );
@@ -46,6 +79,11 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 			alt: '',
 		} );
 	};
+
+	const onChangeImageSize = ( newURL ) => {
+		setAttributes( { url: newURL } );
+	};
+
 	const onUploadError = ( message ) => {
 		noticeOperations.removeAllNotices();
 		noticeOperations.createErrorNotice( message );
@@ -78,9 +116,18 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 
 	return (
 		<>
-			{ url && ! isBlobURL( url ) && (
-				<InspectorControls>
-					<PanelBody title={ __( 'Image Settings', 'team-members' ) }>
+			<InspectorControls>
+				<PanelBody title={ __( 'Image Settings', 'team-members' ) }>
+					{ id && (
+						<SelectControl
+							label={ __( 'Image Size', 'team-members' ) }
+							options={ getImageSizeOptions() }
+							value={ url }
+							onChange={ onChangeImageSize }
+						/>
+					) }
+
+					{ url && ! isBlobURL( url ) && (
 						<TextareaControl
 							label={ __( 'Alt Text', 'team-members' ) }
 							value={ alt }
@@ -90,9 +137,10 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 								'team-membrs'
 							) }
 						/>
-					</PanelBody>
-				</InspectorControls>
-			) }
+					) }
+				</PanelBody>
+			</InspectorControls>
+
 			{ url && (
 				<BlockControls group="inline">
 					<MediaReplaceFlow
