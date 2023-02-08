@@ -16,14 +16,19 @@ import {
 	ToolbarButton,
 	withNotices,
 } from '@wordpress/components';
+import { usePrevious } from '@wordpress/compose';
 import { useSelect } from '@wordpress/data';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 	const { name, bio, url, alt, id } = attributes;
 
 	const [ blobURL, setBlobURL ] = useState();
+
+	const prevURL = usePrevious( url );
+
+	const titleRef = useRef();
 
 	const imageObject = useSelect(
 		( select ) => {
@@ -114,6 +119,12 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 		}
 	}, [ url ] );
 
+	useEffect( () => {
+		if ( url && ! prevURL ) {
+			titleRef.current.focus();
+		}
+	}, [ url, prevURL ] );
+
 	return (
 		<>
 			<InspectorControls>
@@ -180,6 +191,7 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 					notices={ noticeUI }
 				/>
 				<RichText
+					ref={ titleRef }
 					placeholder={ __( 'Member Name', 'team-member' ) }
 					tagName="h4"
 					onChange={ onChangeName }
