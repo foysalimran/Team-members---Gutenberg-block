@@ -108,13 +108,17 @@
 .wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] {
   margin: 10px;
 }
-.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .wp-blcok-block-course-team-member-img {
-  position: relative;
+.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .block-editor-media-placeholder {
+  margin-bottom: 20px;
 }
-.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .wp-blcok-block-course-team-member-img.is-loading img {
+.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .wp-block-blocks-course-team-member-img {
+  position: relative;
+  margin-bottom: 20px;
+}
+.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .wp-block-blocks-course-team-member-img.is-loading img {
   opacity: 0.3;
 }
-.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .wp-blcok-block-course-team-member-img .components-spinner {
+.wp-block-blocks-course-team-members > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="blocks-course/team-member"] .wp-block-blocks-course-team-member-img .components-spinner {
   position: absolute;
   left: 0;
   right: 0;
