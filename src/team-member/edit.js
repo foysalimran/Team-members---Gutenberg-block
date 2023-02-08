@@ -1,12 +1,19 @@
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
 import {
 	BlockControls,
+	InspectorControls,
 	MediaPlaceholder,
 	MediaReplaceFlow,
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { Spinner, ToolbarButton, withNotices } from '@wordpress/components';
+import {
+	PanelBody,
+	Spinner,
+	TextareaControl,
+	ToolbarButton,
+	withNotices,
+} from '@wordpress/components';
 import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -20,6 +27,10 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 	};
 	const onChangeBio = ( newBio ) => {
 		setAttributes( { bio: newBio } );
+	};
+
+	const onChangeAlt = ( newAlt ) => {
+		setAttributes( { alt: newAlt } );
 	};
 	const onSelectImage = ( image ) => {
 		if ( ! image || ! image.url ) {
@@ -67,6 +78,21 @@ function Edit( { attributes, setAttributes, noticeOperations, noticeUI } ) {
 
 	return (
 		<>
+			{ url && ! isBlobURL( url ) && (
+				<InspectorControls>
+					<PanelBody title={ __( 'Image Settings', 'team-members' ) }>
+						<TextareaControl
+							label={ __( 'Alt Text', 'team-members' ) }
+							value={ alt }
+							onChange={ onChangeAlt }
+							help={ __(
+								'The purpose of the alt tag is to provide information about the image for visually impaired users who are using screen readers, as well as for search engines that use this information to understand the content of the page. ',
+								'team-membrs'
+							) }
+						/>
+					</PanelBody>
+				</InspectorControls>
+			) }
 			{ url && (
 				<BlockControls group="inline">
 					<MediaReplaceFlow
