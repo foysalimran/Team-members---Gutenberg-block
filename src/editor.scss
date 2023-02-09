@@ -73,6 +73,37 @@
 				margin-bottom: 5px;
 				margin-top: 5px;
 			}
+
+			.wp-block-blocks-course-team-member-social-links {
+
+				ul {
+					padding: 0;
+					list-style: none;
+					margin: 15px -5px 0;
+
+					li {
+						display: inline-block;
+						margin: 5px;
+
+						span.dashicon {
+							color: #4e4e4e;
+						}
+					}
+
+					.wp-block-blocks-course-team-member-add-icon-li {
+
+						button {
+							background: none;
+							padding: 0;
+							border: none;
+							cursor: pointer;
+							margin: 0;
+							outline: 1px dashed;
+
+						}
+					}
+				}
+			}
 		}
 	}
 }
