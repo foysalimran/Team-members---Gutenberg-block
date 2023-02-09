@@ -242,6 +242,15 @@ function Edit(_ref) {
       id: undefined
     });
   };
+  const addNewSocialItem = () => {
+    setAttributes({
+      socialLinks: [...socialLinks, {
+        icon: "wordpress",
+        link: ''
+      }]
+    });
+    setSelectedLink(socialLinks.length);
+  };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id && (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_1__.isBlobURL)(url)) {
       setAttributes({
@@ -337,7 +346,8 @@ function Edit(_ref) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Tooltip, {
     text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Add Social Link', 'team-members')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Add Social Link', 'team-members')
+    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Add Social Link', 'team-members'),
+    onClick: addNewSocialItem
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
     icon: "plus"
   }))))))));
