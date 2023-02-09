@@ -258,6 +258,12 @@ function Edit(_ref) {
       socialLinks: socialLinksCopy
     });
   };
+  const removeSocialItem = () => {
+    setAttributes({
+      socialLinks: [...socialLinks.slice(0, selectedLink), ...socialLinks.slice(selectedLink + 1)]
+    });
+    setSelectedLink();
+  };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!id && (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_1__.isBlobURL)(url)) {
       setAttributes({
@@ -372,7 +378,8 @@ function Edit(_ref) {
       updateSocialItem('link', link);
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    isDestructive: true
+    isDestructive: true,
+    onClick: removeSocialItem
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('Remove Link', 'team-members')))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.withNotices)(Edit));

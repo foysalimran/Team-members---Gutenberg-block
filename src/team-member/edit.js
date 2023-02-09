@@ -127,6 +127,17 @@ function Edit( {
 		setAttributes( { socialLinks: socialLinksCopy } );
 	};
 
+	const removeSocialItem = () => {
+		setAttributes( {
+			socialLinks: [
+				...socialLinks.slice( 0, selectedLink ),
+				...socialLinks.slice( selectedLink + 1 ),
+			],
+		} );
+
+		setSelectedLink();
+	};
+
 	useEffect( () => {
 		if ( ! id && isBlobURL( url ) ) {
 			setAttributes( {
@@ -303,7 +314,7 @@ function Edit( {
 							} }
 						/>
 						<br />
-						<Button isDestructive>
+						<Button isDestructive onClick={ removeSocialItem }>
 							{ __( 'Remove Link', 'team-members' ) }
 						</Button>
 					</div>
