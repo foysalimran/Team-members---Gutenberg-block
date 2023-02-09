@@ -88,9 +88,10 @@
 						span.dashicon {
 							color: #4e4e4e;
 						}
-					}
 
-					.wp-block-blocks-course-team-member-add-icon-li {
+						&.is-selected {
+							outline: 2px solid rgb(208, 40, 227);
+						}
 
 						button {
 							background: none;
@@ -98,10 +99,17 @@
 							border: none;
 							cursor: pointer;
 							margin: 0;
-							outline: 1px dashed;
+						}
 
+						&.wp-block-blocks-course-team-member-add-icon-li {
+
+							button {
+								outline: 1px dashed;
+							}
 						}
 					}
+
+
 				}
 			}
 		}
